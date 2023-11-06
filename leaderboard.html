@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.leaderboard {
+    background-color: #333;
+    width: 300px;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    color: white;
+}
+
+.score-box {
+    margin: 20px 0;
+}
+
+input {
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+}
+
+button {
+    background-color: #444;
+    border: none;
+    color: white;
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.scores {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+}
+
+h2 {
+    font-weight: bold;
+}
+    </style>
+</head>
+<body>
+    <div class="leaderboard">
+        <h1>Leaderboard</h1>
+        <div class="score-box">
+            <input type="text" id="score" placeholder="Enter score">
+            <button id="enter" onclick="updateLeaderboard()">Enter</button>
+        </div>
+        <div class="scores">
+            <h2>MIN: <span id="min">-</span></h2>
+            <h2>MAX: <span id="max">-</span></h2>
+        </div>
+    </div>
+    <script>
+        let min = Number.MAX_VALUE;
+let max = Number.MIN_VALUE;
+
+function updateLeaderboard() {
+    const scoreInput = document.getElementById("score");
+    const enteredScore = parseFloat(scoreInput.value);
+
+    if (!isNaN(enteredScore)) {
+        min = Math.min(min, enteredScore);
+        max = Math.max(max, enteredScore);
+
+        document.getElementById("min").textContent = min;
+        document.getElementById("max").textContent = max;
+
+        scoreInput.value = "";
+    }
+}
+    </script>
+    
+</body>
+</html>
